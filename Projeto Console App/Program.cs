@@ -7,34 +7,41 @@ namespace Projeto_Console
     {
         static void Main(string[] args)
         {
-            // Criando instâncias de cada classe
-            var student = new Student("John Doe", 20);
-            var teacher = new Teacher("Jane Smith", 35);
+            // Criando instâncias das classes
+            var student = new Student("Felipe Varella", 21);
+            var teacher = new Teacher("Douglas", 81);
             var course = new Course("Mathematics", "MATH101", 3);
-            var school = new School("ABC High School", "123 Main St");
+            var ads = new Course("Análise e desenvolvimento de sistemas", "ADS00", 15);
+            var Ingles = new Course("Ingles Empresarial", "Eng01", 5);
+            var school = new School("Fiap 2k mês", "Paulista");
 
-            // Explicando o que está sendo testado
+            //adicionando os cursos a escola
+            school.AddCourse(course);
+            school.AddCourse(ads);
+            school.AddCourse(Ingles);
+
+
             Console.WriteLine("Testando a funcionalidade de adicionar uma nota para um aluno:");
-
-            // Adicionando uma nota para um aluno
+            // Setando uma nota para um aluno
             student.AddGrade(85);
-
-            // Executando alguma funcionalidade (por exemplo, exibindo informações)
-            Console.WriteLine("Student:");
+            Console.WriteLine("Estudante:");
             Console.WriteLine(student);
 
-            Console.WriteLine("\nTeacher:");
+          
+            
+
+            Console.WriteLine("\nProfessor:");
             Console.WriteLine(teacher);
 
-            Console.WriteLine("\nCourse:");
+            Console.WriteLine("\nCurso:");
             Console.WriteLine(course);
 
-            Console.WriteLine("\nSchool:");
+            Console.WriteLine("\nEscola:");
             Console.WriteLine(school);
 
-            // Laço para exibir os cursos oferecidos pela escola
+            // Laço que exibe os cursos oferecidos pela esocla
             Console.WriteLine("\nCursos oferecidos pela escola:");
-            foreach (var curso in school.CoursesOffered) // Renomeando a variável para 'curso'
+            foreach (var curso in school.CoursesOffered) // Renomeando a variável para curso
             {
                 Console.WriteLine($"Nome: {curso.Name}, Código: {curso.Code}, Horas de Crédito: {curso.CreditHours}");
             }
@@ -43,11 +50,11 @@ namespace Projeto_Console
             Console.WriteLine("\nControlador de fluxo com base na idade do professor:");
             if (teacher.Age < 30)
             {
-                Console.WriteLine("O professor é jovem.");
+                Console.WriteLine("O professor ainda tem pique.");
             }
             else
             {
-                Console.WriteLine("O professor não é tão jovem.");
+                Console.WriteLine("O professor já ta velinho.");
             }
         }
     }

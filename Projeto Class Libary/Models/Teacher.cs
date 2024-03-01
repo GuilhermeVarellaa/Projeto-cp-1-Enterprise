@@ -50,7 +50,7 @@
 
         private void PrivateMethod()
         {
-            Console.WriteLine("Este é um método privado da classe Teacher.");
+            Console.WriteLine("Este e um método privado na classe Teacher.");
         }
     }
 }

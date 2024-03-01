@@ -8,19 +8,16 @@ namespace Projeto_Class_Libary.Models
 {
     public class Student
     {
-        
         public string Name { get; set; }
         public int Age { get; set; }
         public string StudentId { get; set; }
-        public List<double> Grades { get; private set; }
+        public List<double> Grades { get; private set; } = new List<double>();
 
-        
         public Student(string name, int age, string studentId)
         {
             Name = name;
             Age = age;
             StudentId = studentId;
-            Grades = new List<double>();
         }
 
         public Student(string name, int age) : this(name, age, GenerateStudentId())
@@ -31,19 +28,25 @@ namespace Projeto_Class_Libary.Models
         {
         }
 
-     
         public override string ToString()
         {
-            return $"Name: {Name}, Age: {Age}, Student ID: {StudentId}";
+            // Convertendo as notas para uma string adequada
+            var gradesText = Grades.Count > 0 ? string.Join(", ", Grades) : "Nenhuma nota atribuída";
+            return $"Name: {Name}, Age: {Age}, Student ID: {StudentId}, Grades: {gradesText}";
         }
 
-   
         public void AddGrade(double grade)
         {
-            Grades.Add(grade);
+            if (IsValidGrade(grade))
+            {
+                Grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("Nota inválida. A nota deve ser entre 0 e 100.");
+            }
         }
 
-        
         public double CalculateAverageGrade()
         {
             if (Grades.Count == 0)
@@ -57,15 +60,19 @@ namespace Projeto_Class_Libary.Models
             return sum / Grades.Count;
         }
 
-    
         private static string GenerateStudentId()
         {
             return Guid.NewGuid().ToString();
         }
 
+        protected bool IsValidGrade(double grade)
+        {
+            return grade >= 0 && grade <= 100;
+        }
+
         private void PrivateMethod()
         {
-            Console.WriteLine("pera");
+            Console.WriteLine("Este é um método privado na classe Student.");
         }
     }
 }
